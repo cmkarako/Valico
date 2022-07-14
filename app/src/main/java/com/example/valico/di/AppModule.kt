@@ -2,6 +2,7 @@ package com.example.valico.di
 
 import android.app.Application
 import androidx.room.Room
+//import com.example.valico.data.BarrelFreestyleDatabase
 import com.example.valico.data.FreestyleDatabase
 import com.example.valico.data.FreestyleRepository
 import com.example.valico.data.FreestyleRepositoryImplementation
@@ -26,9 +27,9 @@ object AppModule {
     }
 
     @Provides
-    @Singleton
-    fun provideFreestyleRepository(db: FreestyleDatabase) : FreestyleRepository {
-        return FreestyleRepositoryImplementation(db.dao)
+    //@Singleton
+    fun provideFreestyleRepository(db: FreestyleDatabase) : FreestyleRepository  {
+        return FreestyleRepositoryImplementation(db.dao, db.dao2)
     }
 
 }

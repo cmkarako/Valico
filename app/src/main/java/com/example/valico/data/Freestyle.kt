@@ -12,7 +12,6 @@ import androidx.room.PrimaryKey
 data class Freestyle(
     val title: String,
     val imageUrl: Int,
-    val isSelected: Boolean,
     @PrimaryKey(autoGenerate = true) val id: Int
 )
 
