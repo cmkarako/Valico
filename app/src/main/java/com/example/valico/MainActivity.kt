@@ -1,11 +1,9 @@
 package com.example.valico
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,8 +45,8 @@ class MainActivity : AppCompatActivity() {
             .allowMainThreadQueries()
             .build()
 
-        database.dao.insertFreestyle(Freestyle("Special K", R.drawable.freestyle1, false, 1))
-        database.dao.insertFreestyle(Freestyle("Candle", R.drawable.freestyle2, false, 2))
+        database.dao.insertFreestyle(Freestyle("Special K", R.drawable.freestyle1, 1))
+        database.dao.insertFreestyle(Freestyle("Candle", R.drawable.freestyle2, 2))
 
         val allFreestyles = database.dao.getFreestyles()
 
@@ -67,10 +65,12 @@ class MainActivity : AppCompatActivity() {
         val freestyleAdapter = ItemAdapter(this, allFreestyles)
 
         freestyleRV.adapter = freestyleAdapter
-
+        val itemClicked = database.dao.getFreestyleById(1)
         freestyleAdapter.setOnItemClickListener(object: ItemAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 Toast.makeText(this@MainActivity, "selected item $position", Toast.LENGTH_LONG).show()
+                val itemClicked = database.dao.getFreestyleById(position)
+                database.dao2.insertBarrelFreestyle(itemClicked)
             }
         })
 

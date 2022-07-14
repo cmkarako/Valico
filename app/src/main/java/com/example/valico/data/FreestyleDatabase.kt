@@ -15,10 +15,11 @@ abstract class FreestyleDatabase : RoomDatabase(){
 
     //abstract fun freestyleDao() : FreestyleDao
     abstract val dao: FreestyleDao
+    abstract val dao2: BarrelFreestyleDao
 }
 
-abstract class BarrelFreestyleDatabase : RoomDatabase(){
-
-    //abstract fun freestyleDao() : FreestyleDao
-    abstract val dao: FreestyleDao
-}
+//abstract class BarrelFreestyleDatabase : RoomDatabase(){
+//
+//    //abstract fun freestyleDao() : FreestyleDao
+//    abstract val dao2: BarrelFreestyleDao
+//}

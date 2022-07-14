@@ -19,3 +19,16 @@ interface FreestyleRepository {
 
     fun getFreestyles() : List<Freestyle>
 }
+
+interface BarrelFreestyleRepository {
+    suspend fun insertBarrelFreestyle(freestyle: Freestyle)
+
+
+    suspend fun deleteBarrelFreestyle(barrelFreestyle: BarrelFreestyle)
+
+
+    suspend fun getBarrelFreestyleById(id: Int) :BarrelFreestyle?
+
+
+    fun getBarrelFreestyles() : List<BarrelFreestyle>
+}
