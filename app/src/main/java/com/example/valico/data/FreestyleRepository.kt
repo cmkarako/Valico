@@ -4,6 +4,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import dagger.Provides
 import kotlinx.coroutines.flow.Flow
 
 interface FreestyleRepository {
@@ -20,15 +21,15 @@ interface FreestyleRepository {
     fun getFreestyles() : List<Freestyle>
 }
 
-interface BarrelFreestyleRepository {
-    suspend fun insertBarrelFreestyle(freestyle: Freestyle)
-
-
-    suspend fun deleteBarrelFreestyle(barrelFreestyle: BarrelFreestyle)
-
-
-    suspend fun getBarrelFreestyleById(id: Int) :BarrelFreestyle?
-
-
-    fun getBarrelFreestyles() : List<BarrelFreestyle>
-}
+//interface BarrelFreestyleRepository {
+//    suspend fun insertBarrelFreestyle(freestyle: Freestyle)
+//
+//
+//    suspend fun deleteBarrelFreestyle(barrelFreestyle: BarrelFreestyle)
+//
+//
+//    suspend fun getBarrelFreestyleById(id: Int) :BarrelFreestyle?
+//
+//
+//    fun getBarrelFreestyles() : List<BarrelFreestyle>
+//}

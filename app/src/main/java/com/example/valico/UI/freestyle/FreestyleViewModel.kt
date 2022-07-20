@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.valico.data.*
 import com.example.valico.util.UiEvent
+import dagger.Provides
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -24,9 +25,9 @@ class FreestyleViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun reorderBarrelFreestyle(barrelFreestyle: BarrelFreestyle) {
-
-    }
+//    fun reorderBarrelFreestyle(barrelFreestyle: BarrelFreestyle) {
+//
+//    }
 
     fun addToBarrelFreestyle() {
 

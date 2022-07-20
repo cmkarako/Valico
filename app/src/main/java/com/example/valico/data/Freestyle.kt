@@ -10,15 +10,18 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "freestyle")
 data class Freestyle(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val title: String,
     val imageUrl: Int,
-    @PrimaryKey(autoGenerate = true) val id: Int
-)
+    val isBarrelFreestyle: Boolean,
+    val isHorseFreestyle: Boolean,
 
-@Entity(tableName = "barrelFreestyle")
-data class BarrelFreestyle(
-    val title: String,
-    val imageUrl: Int,
-    @PrimaryKey(autoGenerate = true) val id: Int
 )
+//@Entity(tableName = "barrelFreestyle")
+//data class BarrelFreestyle(
+//    val title: String,
+//    val imageUrl: Int,
+//    @PrimaryKey(autoGenerate = true) val id: Int
+//)
 

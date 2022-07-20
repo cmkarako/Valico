@@ -31,8 +31,9 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         //setTheme(R.style.Theme_App_Starting)
-        installSplashScreen()
+
         super.onCreate(savedInstanceState)
+        installSplashScreen()
 
 //        Thread.sleep(2000)
 //        val intent = Intent(this, MainActivity::class.java)
@@ -40,22 +41,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val database = Room.databaseBuilder(
-            this, FreestyleDatabase::class.java, "freestyle_database"
+            this, FreestyleDatabase::class.java,  "freestyle_database"
         )
             .allowMainThreadQueries()
             .build()
 
-        database.dao.insertFreestyle(Freestyle("Special K", R.drawable.freestyle1, 1))
-        database.dao.insertFreestyle(Freestyle("Candle", R.drawable.freestyle2, 2))
+        database.dao.insertFreestyle(Freestyle(0,"Special K", R.drawable.freestyle1, false, false))
+        database.dao.insertFreestyle(Freestyle(0,"Candle", R.drawable.freestyle2, false, false))
 
         val allFreestyles = database.dao.getFreestyles()
-
 //        val itemLayout: ImageView = findViewById(R.id.image)
 //        itemLayout.setOnClickListener() {
-//            if(itemLayout.isSelected) {
-//                Toast.makeText(this, "selected item", Toast.LENGTH_LONG).show()
-//            }
-//        }
+//            if(itemLayout.isSelected) { Toast.makeText(this, "selected item", Toast.LENGTH_LONG).show() } }
 //        itemLayout.isSelected
         Log.d("test", "allFreestyles size? ${allFreestyles.size}")
 
@@ -65,12 +62,19 @@ class MainActivity : AppCompatActivity() {
         val freestyleAdapter = ItemAdapter(this, allFreestyles)
 
         freestyleRV.adapter = freestyleAdapter
-        val itemClicked = database.dao.getFreestyleById(1)
+        //val itemClicked = database.dao.getFreestyleById(position)
         freestyleAdapter.setOnItemClickListener(object: ItemAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                Toast.makeText(this@MainActivity, "selected item $position", Toast.LENGTH_LONG).show()
-                val itemClicked = database.dao.getFreestyleById(position)
-                database.dao2.insertBarrelFreestyle(itemClicked)
+            override fun onItemClick(position: Int, freestyle: Freestyle) {
+                val itemClicked = database.dao.getFreestyleById(position+1)
+                Toast.makeText(this@MainActivity, "selected item ${
+                    database.dao.getFreestyleById(
+                        position+1
+                    )?.title ?: "Default Freestyle"
+                }", Toast.LENGTH_LONG).show()
+
+                database.dao.insertFreestyle(Freestyle(0, database.dao.getFreestyleById(position+1)?.title ?: "Default Freestyle",
+                    database.dao.getFreestyleById(position+1)?.imageUrl ?: R.drawable.freestyle1, false, false))
+
             }
         })
 
@@ -86,6 +90,6 @@ class MainActivity : AppCompatActivity() {
 
      fun onFreestyleClick(freestyle: Freestyle){
         intent.putExtra("image", freestyle.imageUrl)
-        Toast.makeText(this, "selected item", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "selected item ${freestyle.title}", Toast.LENGTH_LONG).show()
     }
 }

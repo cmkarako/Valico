@@ -27,9 +27,9 @@ object AppModule {
     }
 
     @Provides
-    //@Singleton
+    @Singleton
     fun provideFreestyleRepository(db: FreestyleDatabase) : FreestyleRepository  {
-        return FreestyleRepositoryImplementation(db.dao, db.dao2)
+        return FreestyleRepositoryImplementation(db.dao)
     }
 
 }

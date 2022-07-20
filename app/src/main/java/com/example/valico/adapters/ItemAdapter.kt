@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.valico.R
 import com.example.valico.data.Freestyle
+import com.example.valico.data.FreestyleDao
 
 class ItemAdapter(val context: Context, val freestyles: List<Freestyle>) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
@@ -26,7 +27,7 @@ class ItemAdapter(val context: Context, val freestyles: List<Freestyle>) :
 
         init {
             itemView.setOnClickListener{
-                listener.onItemClick(adapterPosition)
+                listener.onItemClick(adapterPosition, freestyles = Freestyle(0, "test", R.drawable.freestyle1, false, false))
             }
         }
 
@@ -51,7 +52,7 @@ class ItemAdapter(val context: Context, val freestyles: List<Freestyle>) :
     }
 
     interface onItemClickListener {
-        fun onItemClick(position : Int)
+        fun onItemClick(position : Int, freestyles: Freestyle)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
